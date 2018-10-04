@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { CreateUserComponent } from '../users/create-user/create-user.component';
 
 import { AuthGuard } from '../auth/auth.guard';
 
@@ -15,14 +16,17 @@ const adminRoutes: Routes = [
       {
         path: '',
         children: [
-          { path: 'users', component: ManageUsersComponent },
-          { path: '', component: AdminDashboardComponent }
-        ]
-      }
+          {
+            path: 'users/new',
+            canActivate: [AuthGuard],
+            component: CreateUserComponent
+          }
+        ],
+
+      },
     ]
   }
 ];
-const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forChild(adminRoutes)],

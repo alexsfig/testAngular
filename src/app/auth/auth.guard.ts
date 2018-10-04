@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 export class AuthGuard implements CanActivate {
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) { }
 
   canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -19,15 +19,10 @@ export class AuthGuard implements CanActivate {
   }
 
   checkLogin(url: string): boolean {
-    if (localStorage.getItem('currentUser') !== undefined ) {
+    if (localStorage.getItem('currentUser') !== null) {
       return true;
     }
-    console.log('lorem')
-    // Store the attempted URL for redirecting
-    this.authService.redirectUrl = url;
-
-    // Navigate to the login page with extras
-    this.router.navigate(['/login']);
+    this.authService.logout();
     return false;
   }
 }

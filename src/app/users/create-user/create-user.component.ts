@@ -1,31 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { UsersService } from '../_services/users.service'
-import { User } from '../_entity/user'
+import { UsersService } from '../../_services/users.service'
+import { User } from '../../_entity/user'
 
 import { FormsModule, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-user-detail',
-  templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.css']
+  selector: 'app-create-user',
+  templateUrl: './create-user.component.html',
+  styleUrls: ['./create-user.component.css']
 })
-export class UserDetailComponent implements OnInit {
+export class CreateUserComponent implements OnInit {
 
-  user: User;
+  user = new User(
+    0,
+    '',
+    '',
+    '',
+    '',
+    '',
+
+  );
+
   userForm: FormGroup;
   submitted = false;
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private usersService: UsersService,
     private location: Location,
     private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
-    this.findOne();
+
+    this.validator()
   }
 
   get username() { return this.userForm.get('username'); }
@@ -34,23 +45,18 @@ export class UserDetailComponent implements OnInit {
 
   get f() { return this.userForm.controls; }
 
-  findOne(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.usersService.findOne(id)
+  create(): void {
+    this.user = {...this.userForm.value}
+    console.log(this.user)
+
+    this.usersService.createUser(this.user)
       .subscribe(user => {
         this.user = user;
-        this.validator()
+        console.log(user)
+        this.router.navigateByUrl(`/users/${user.id}`);
       });
   }
 
-  updateUser(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.user = {...this.userForm.value}
-    console.log(this.user)
-    this.usersService.update(id, this.user)
-      .subscribe();
-  }
-  
   validator(): void {
     this.userForm = new FormGroup({
       username: new FormControl(
@@ -70,17 +76,21 @@ export class UserDetailComponent implements OnInit {
           Validators.required,
           Validators.minLength(4)
         ]
+      ),
+      password: new FormControl(
+        this.user.password, [
+          Validators.required,
+          Validators.minLength(4)
+        ]
       )
     });
   }
 
   onSubmit() {
-    this.submitted = true;
     if (this.userForm.invalid) {
       return;
     }
-    this.updateUser()
-
+    this.create()
   }
 
   goBack(): void {

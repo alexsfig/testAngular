@@ -8,9 +8,9 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { UsersComponent } from './users/users.component';
+import { UsersComponent } from './users/users/users.component';
 import { AdminModule } from './admin/admin.module';
-import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UserDetailComponent } from './users/user-detail/user-detail.component';
 
 import { FormsModule }   from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -23,6 +23,7 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 
 import { AuthModule } from './auth/auth.module';
+import { CreateUserComponent } from './users/create-user/create-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import { AuthModule } from './auth/auth.module';
     UsersComponent,
     UserDetailComponent,
     ErrorComponent,
+    CreateUserComponent,
   ],
   imports: [
     ReactiveFormsModule,

@@ -1,35 +1,39 @@
-<div *ngIf="user">
+<div *ngIf="user" class="row">
   <h2>{{user.name | uppercase}} Details</h2>
-  <div>
+  <div class="col-12">
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()" >
-      <label>username:
-        <input type="text" formControlName="username" class="form-control">
-        <div *ngIf="f.username.errors" class="invalid-feedback">
-           <div *ngIf="f.username.errors.required">username is required</div>
-           <div *ngIf="f.username.errors.minlength">username must be at least 6 characters</div>
-       </div>
-      </label>
-      <br/>
+      <div class="form-grop">
+        <label>username:
+        </label>
+          <input type="text" formControlName="username" class="form-control">
+          <div *ngIf="f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">username is required</div>
+            <div *ngIf="f.username.errors.minlength">username must be at least 6 characters</div>
+          </div>
+
+      </div>
+      <div class="form-grop">
       <label>firstName:
+      </label>
         <input type="text" formControlName="firstName" class="form-control">
         <div *ngIf="f.firstName.errors" class="invalid-feedback">
            <div *ngIf="f.firstName.errors.required">firstName is required</div>
            <div *ngIf="f.firstName.errors.minlength">firstName must be at least 6 characters</div>
        </div>
-      </label>
-      <br/>
+    </div>
+    <div class="form-grop">
       <label>lastName:
+      </label>
         <input type="text" formControlName="lastName" class="form-control">
         <div *ngIf="f.lastName.errors" class="invalid-feedback">
            <div *ngIf="f.lastName.errors.required">lastName is required</div>
            <div *ngIf="f.lastName.errors.minlength">lastName must be at least 6 characters</div>
        </div>
-      </label>
-      <br/>
+    </div>
       <div class="form-group">
           <button [disabled]="loading" class="btn btn-primary">update</button>
       </div>
     </form>
   </div>
-  <button (click)="goBack()">go back</button>
+  <button (click)="goBack()" class="btn">go back</button>
 </div>

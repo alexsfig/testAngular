@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UsersService } from '../_services/users.service'
-import { User } from '../_entity/user'
+import { UsersService } from '../../_services/users.service'
+import { User } from '../../_entity/user'
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',

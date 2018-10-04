@@ -6,8 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { UsersComponent } from './users/users.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UsersComponent } from './users/users/users.component';
+import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { AuthGuard } from './auth/auth.guard';
 
 
