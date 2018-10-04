@@ -14,7 +14,6 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
 
 import { FormsModule }   from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ErrorComponent } from './error/error.component';
 
 import { HttpErrorHandler } from'./_services/http-error-handler.service';
 import { LoginComponent } from './auth/login/login.component';
@@ -33,7 +32,6 @@ import { CreateUserComponent } from './users/create-user/create-user.component';
     DashboardComponent,
     UsersComponent,
     UserDetailComponent,
-    ErrorComponent,
     CreateUserComponent,
   ],
   imports: [

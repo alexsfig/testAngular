@@ -8,7 +8,7 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { UsersComponent } from './users/users/users.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
-import { AuthGuard } from './auth/auth.guard';
+import { AuthGuard } from './_guard/auth.guard';
 
 
 const routes: Routes = [
