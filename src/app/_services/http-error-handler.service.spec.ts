@@ -1,12 +1,25 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HttpErrorHandlerService } from './http-error-handler.service';
+import { HttpErrorHandler } from './http-error-handler.service';
+import { HttpErrorResponse } from '@angular/common/http';
+
+import { Observable, of } from 'rxjs';
+
+import { MessageService } from './message.service';
 
 describe('HttpErrorHandlerService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  beforeEach(
+    () => {
+      TestBed.configureTestingModule({
+        providers: [
+          HttpErrorHandler,
+        ],
+      })
+    }
+  );
 
   it('should be created', () => {
-    const service: HttpErrorHandlerService = TestBed.get(HttpErrorHandlerService);
+    const service: HttpErrorHandler = TestBed.get(HttpErrorHandler);
     expect(service).toBeTruthy();
   });
 });
